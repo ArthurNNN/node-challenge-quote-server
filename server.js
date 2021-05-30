@@ -4,7 +4,9 @@ const { response } = require("express");
 
 //load the 'express' module which makes writing webservers easy
 const express = require("express");
-const app = express();
+var app = express();
+
+
 
 //load the quotes JSON
 const quotes = require("./quotes.json");
@@ -18,7 +20,7 @@ app.get("/", function (request, response) {
 });
 
 //START OF YOUR CODE...
-
+const lodash = require("lodash");
 
 app.get("/quotes", function (req, res) {
   res.send(quotes);
@@ -26,7 +28,7 @@ app.get("/quotes", function (req, res) {
 
 
 app.get("/quotes/random", function (req, res) {
-  res.send(pickFromArray(quotes));
+  res.send(lodash.sample(quotes));
 });
 
 app.get("/search", function (req, res) {
@@ -43,9 +45,9 @@ app.get("/search", function (req, res) {
 //example: pickFromArray([1,2,3,4]), or
 //example: pickFromArray(myContactsArray)
 //
-function pickFromArray(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
+// function pickFromArray(arr) {
+//   return arr[Math.floor(Math.random() * arr.length)];
+// }
 
 //Start our server so that it listens for HTTP requests!
 let port = 5000;
